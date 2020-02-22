@@ -1,33 +1,34 @@
 package pl.sda.projekt.pansamochodzik.entity;
 
-import org.aspectj.asm.IModelFilter;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
-@Table(name = "carlistintellij")
+@Table(name = "cars")
 public class Car {
     @Id
+    @GeneratedValue //nie trzeba dodawać id wprost, hibernate wygeneruje sam wartość
     @Column
     private int id;
-    @Column(name = "Marka")
+    @Column(name = "marka")
     private String marka;
-    @Column(name = "Model")
+    @Column(name = "model")
     private String model;
-    @Column(name = "Rocznik")
-    private double rocznik;
-    @Column(name = "Cena")
-    private int cena;
+    @Column(name = "Typnadwozia")
+    private String carType;
+    @Column(name = "year")
+    private Double year;
+    @Column(name = "color")
+    private String kolor;
+    @Column(name = "price")
+    private BigDecimal price;
+    @Column(name = "booked")
+    private Boolean isBooked;
+    @OneToOne
+    private User user;
+
 
     public Car() {
-        this.id = id;
-        this.marka = marka;
-        this.model = model;
-        this.rocznik = rocznik;
-        this.cena = cena;
     }
 
     public int getId() {
@@ -54,19 +55,51 @@ public class Car {
         this.model = model;
     }
 
-    public double getRocznik() {
-        return rocznik;
+    public String getCarType() {
+        return carType;
     }
 
-    public void setRocznik(double rocznik) {
-        this.rocznik = rocznik;
+    public void setCarType(String carType) {
+        this.carType = carType;
     }
 
-    public int getCena() {
-        return cena;
+    public Double getRocznik() {
+        return year;
     }
 
-    public void setCena(int cena) {
-        this.cena = cena;
+    public void setRocznik(Double rocznik) {
+        this.year = rocznik;
+    }
+
+    public String getKolor() {
+        return kolor;
+    }
+
+    public void setKolor(String kolor) {
+        this.kolor = kolor;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal cena) {
+        this.price = cena;
+    }
+
+    public Boolean getBooked() {
+        return isBooked;
+    }
+
+    public void setBooked(Boolean booked) {
+        isBooked = booked;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
